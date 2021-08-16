@@ -36,6 +36,7 @@ public class UsuarioRestController {
     
     @GetMapping("/usuario/todos")
     public List<Usuario> todos(){
+        System.out.println("Mostrar Usuarios");
         return usuarioRepo.findAll();
     }
 

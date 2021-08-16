@@ -79,8 +79,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         
         configuration.setAllowedMethods(Arrays.asList("GET","POST","PUT","PATCH","OPTIONS"));
         configuration.addAllowedOrigin("*");
-        configuration.addAllowedOrigin("*");
-        configuration.addAllowedMethod("*");
         configuration.setMaxAge(Duration.ZERO);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**",configuration);
@@ -90,13 +88,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable()
-                // permitir el login y el registrar "/*",
-                .authorizeRequests().antMatchers("/authenticate", "/register").permitAll().
+                // permitir el login y el registrar
+                .authorizeRequests().antMatchers("/*", "/authenticate", "/register", "usuario/todos", "/usuario/crear").permitAll().
                 // all other requests need to be authenticated
                 anyRequest().anonymous().and().
-                //anyRequest().authenticated().and().
-                
-               
                 // guardar estado.
                 exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);

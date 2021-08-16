@@ -38,6 +38,7 @@ public class EquipoServiceImp implements IEquipoService {
     @Override
     @Transactional(readOnly=true)
     public Optional<Equipo> findById(Integer id) {
+        System.out.println("Equipo Buscado:" + id);
         return equipoRepo.findById(id);
     }
 

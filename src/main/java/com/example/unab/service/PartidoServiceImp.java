@@ -65,8 +65,9 @@ public class PartidoServiceImp implements IPartidoService {
         newPartido.setFecha(partido.getFecha());
         newPartido.setGoles_local(partido.getGoles_local());
         newPartido.setGoles_visitante(partido.getGoles_visitante());
+        System.out.println("Local: " + partido.getLocal());
         Optional<Equipo> oEquipoLocal = equipoRepo.findById(partido.getLocal());
-        System.out.println(oEquipoLocal);
+        System.out.println("Local: " +oEquipoLocal);
         if(oEquipoLocal.isPresent()){
              newPartido.setLocal(oEquipoLocal.get());
         }
@@ -74,11 +75,12 @@ public class PartidoServiceImp implements IPartidoService {
         if(oEquipoVisitante.isPresent()){
              newPartido.setVisitante(oEquipoVisitante.get());
         }
+         System.out.println("Visitante: " +oEquipoLocal);
         Optional<Usuario> oUsuario = usuarioRepo.findById(partido.getUsuario());
         if(oUsuario.isPresent()){
              newPartido.setUsuario(oUsuario.get());
         }
-       
+        System.out.println("Guardar Partido");
         return partidoRepo.save(newPartido);
     }
 

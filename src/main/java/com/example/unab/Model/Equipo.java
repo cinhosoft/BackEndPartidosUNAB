@@ -46,10 +46,6 @@ public class Equipo {
     @OneToMany(mappedBy="visitante", fetch=FetchType.LAZY)
     private Set<Partido> visitante;
 
-    @Override
-    public String toString() {
-        return "Equipo{" + "id=" + id + ", nombre=" + nombre + ", local=" + local + ", visitante=" + visitante + '}';
-    }
     
     
     
